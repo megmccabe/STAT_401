@@ -412,7 +412,8 @@ mean_value
 Make sure to include at least three rows of data. Print the entire data frame. Name it whatever you like.
 
 ```{r ex3}
-
+df <- data.frame(Name=c("Owen", "Lily", "Chloe"), Age=c(27, 24, 24), FavoriteColor=c("green", "blue", "purple"))
+df
 ```
 
 4. Create two numeric vectors: `vector1` with values 1, 2, 3, and `vector2` with values 4, 5, 6. Perform the following operations:
@@ -425,7 +426,16 @@ Make sure to include at least three rows of data. Print the entire data frame. N
 Print all four result vectors.
 
 ```{r ex4}
-
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+sum_vector <- vector1 + vector2
+diff_vector <- vector1 - vector2
+prod_vector <- vector1 * vector2
+quot_vector <- vector1 / vector2
+sum_vector 
+diff_vector 
+prod_vector 
+quot_vector
 ```
 
 5. Knit this document and submit the Rmd file and the html version to Sakai under Lab 1. Both Rmd and html files need to be submitted to be graded.
