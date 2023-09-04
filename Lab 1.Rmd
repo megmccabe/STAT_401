@@ -397,7 +397,9 @@ ____________________________________________________________________
 2. Create a numeric vector containing the values 5, 10, 15, 20, and 25. Calculate the mean of this vector and assign it to a variable called `mean_value`. Print the `mean_value`
 
 ```{r ex2}
-
+x <- c(5, 10, 15, 20, 25)
+mean_value <- mean(x)
+mean_value
 ```
 
 
