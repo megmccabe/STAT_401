@@ -1,6 +1,6 @@
 ---
 title: "Lab 1"
-author: "Put Your Name Here"
+author: "Megan McCabe"
 date: "Due: 09-10-2023"
 output: html_document
 ---
@@ -412,8 +412,8 @@ mean_value
 Make sure to include at least three rows of data. Print the entire data frame. Name it whatever you like.
 
 ```{r ex3}
-df <- data.frame(Name=c("Owen", "Lily", "Chloe"), Age=c(27, 24, 24), FavoriteColor=c("green", "blue", "purple"))
-df
+friends <- data.frame(Name=c("Owen", "Lily", "Chloe"), Age=c(27, 24, 24), FavoriteColor=c("green", "blue", "purple"))
+friends
 ```
 
 4. Create two numeric vectors: `vector1` with values 1, 2, 3, and `vector2` with values 4, 5, 6. Perform the following operations:
