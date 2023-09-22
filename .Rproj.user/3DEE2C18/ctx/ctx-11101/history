@@ -1,0 +1,512 @@
+quot_vector <- vector1 / vector2
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+sum_vector <- vector1 + vector2
+diff_vector <- vector1 - vector2
+prod_vector <- vector1 * vector2
+quot_vector <- vector1 / vector2
+sum_vector diff_vector prod_vector quot_vector
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+sum_vector <- vector1 + vector2
+diff_vector <- vector1 - vector2
+prod_vector <- vector1 * vector2
+quot_vector <- vector1 / vector2
+sum_vector
+diff_vector
+prod_vector
+quot_vector
+friends <- data.frame(Name=c("Owen", "Lily", "Chloe"), Age=c(27, 24, 24), FavoriteColor=c("green", "blue", "purple"))
+friends
+"Hello World!"
+10
+5+5
+print("Hellow World!")
+name <- "John"
+age <- 40
+name <- NULL
+name
+print(age)
+name <- "John"
+name
+print(age)
+class(age)
+x <- "1"
+x <- as.numeric(x)
+class(x)
+max(5, 10, 15)
+10 > 9
+10 == 9
+10 < 9
+10! = 9
+10 > 9
+10 == 9
+10 < 9
+10 != 9
+a <- 10
+b <- 9
+a > b
+if (b>a) {print("b is greater than a")}
+else {print("b is not greater a")}
+a <- 200
+b <- 33
+if (b>a) {print("b is greater than a")}
+else {print("b is not greater a")}
+a <- 200
+b <- 33
+if (b>a) {print("b is greater than a")} else {print("b is not greater a")}
+a <- 200
+b <- 33
+c <- 500
+if (a > b & c > a){print("Both conditions are true")}
+if (a>b | a>c){print("At least one of the conditions is true")}
+i <- 1
+while (i < 6){print(i) i<- i + 1}
+i <- 1
+while (i<6){print(i) i<- i + 1}
+i <- 1
+while (i<6) {print(i) i<- i + 1}
+i <- 1
+while (i<6) {
+print(i)
+i<- i + 1
+}
+i <- 1
+while (i<6){print(i)
+i <- i + 1
+i <- 1
+while (i<6){print(i)
+i <- i + 1}
+i <- 1
+while (i<6){print(i)
+i <- i + 1
+}
+i <- 1
+while (i<6){
+print(i)
+i <- i + 1
+}
+i <- 1
+while (i<6) {
+print(i)
+i <- i + 1
+}
+print(i)
+i <- 1
+while (i<6) {
+print(i)
+i <- i + 1
+}
+for (x in 1:10) {
+print (x)
+}
+my_function <- function () {
+print ("Hello World!")
+}
+my function()
+my_function <- function() {
+print ("Hello World!")
+}
+my function()
+my_function <- function() {
+print ("Hello World!")
+}
+my function()
+my_function()
+my_function <- function() {
+print ("Hello World!")
+}
+my_function()
+my_function <- function(fname) {
+print(fname)
+}
+my_function("Peter")
+my_function("Lois")
+my_function("Stewie")
+fruits <- c("banana", "apple", "orange")
+fruits
+length(fruits)
+i <- 1
+while (i<6) {
+print(i)
+i <- i + 1
+}
+this matrix
+thismatrix
+thismatrix <- matrix(c(1,2,3,4,5,6), nrow=3, ncol=2)
+thismatrix
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape",
+"pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+thismatrix
+newmatrix <- cbind(thismatrix, c("strawberry", "blueberry", "raspberry")) newmatrix
+newmatrix <- cbind(thismatrix, c("strawberry", "blueberry", "raspberry"))
+newmatrix
+Matrix1 <- matrix(c("apple", "banana", "cherry", "grape"), nrow = 2, ncol = 2)
+Matrix2 <- matrix(c("orange", "mango", "pineapple", "watermelon"), nrow = 2, ncol = 2)
+Matrix_Combined_row <- rbind(Matrix1, Matrix2)
+Matrix_Combined_row
+Matrix_Combined_column <- cbind(Matrix1, Matrix2)
+Matrix_Combined_column
+dim(thismatrix)
+View(thismatrix)
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+for (rows in 1:nrow(thismatrix)) {
+for (columns in 1:ncol(thismatrix)) {
+print(thismatrix[rows, columns]) }
+}
+View(thismatrix)
+View(thismatrix)
+View(thismatrix)
+View(thismatrix)
+Training = c("Strength", "Stamina", "Other"), Pulse = c(100, 150, 120),
+Training = c("Strength","Stamina","Other"), Pulse = c(100, 150, 120),
+Training = c("Strength","Stamina","Other"), Pulse = c(100, 150, 120),
+Data_Frame <- data.frame (
+Training = c("Strength","Stamina","Other"), Pulse = c(100, 150, 120),
+Duration = c(60, 30, 45)
+)
+summary(Data_Frame)
+View(Data_Frame)
+View(Data_Frame)
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110) # new data point
+View(Data_Frame)
+View(Data_Frame)
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110)
+View(Data_Frame)
+View(Data_Frame)
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110)
+View(Data_Frame)
+View(Data_Frame)
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110))
+New_col_DF <- cbind(Data_Frame, Steps = c(1000, 6000, 2000))
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110))
+New_col_DF <- cbind(Data_Frame, Steps = c(1000, 6000, 2000))
+View(Data_Frame)
+View(Matrix2)
+View(Matrix1)
+View(Matrix_Combined_column)
+View(New_row_DF)
+View(New_row_DF)
+View(New_col_DF)
+View(New_col_DF)
+thislist <- list("apple", "banana", "cherry")
+for (x in thislist) {
+print(x) }
+install.packages('ggplot2’)
+install.packages('ggplot2’)
+install.packages('ggplot2')
+library(ggplot2)
+?ggplot2
+print(getwd())
+setwd("C:/Users/mxi1/Desktop")
+setwd("C:/Users/mxi1/Desktop")
+setwd("C:/Users/mxi1/Desktop")
+data <- read.csv('births.csv')
+setwd("C:/Users/mxi1/Desktop")
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+sum_vector <- vector1 + vector2
+diff_vector <- vector1 - vector2
+prod_vector <- vector1 * vector2
+quot_vector <- vector1 / vector2
+sum_vector
+diff_vector
+prod_vector
+quot_vector
+usethis::usegit()
+usethis::use_git()
+install.packages("usethis")
+usethis::use_git()
+usethis::use_git()
+usethis::use_git()
+x <- c(5, 10, 15, 20, 25)
+mean_value <- mean(x)
+mean_value
+friends <- data.frame(Name=c("Owen", "Lily", "Chloe"), Age=c(27, 24, 24), FavoriteColor=c("green", "blue", "purple"))
+friends
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+sum_vector <- vector1 + vector2
+diff_vector <- vector1 - vector2
+prod_vector <- vector1 * vector2
+quot_vector <- vector1 / vector2
+sum_vector
+diff_vector
+prod_vector
+quot_vector
+getwd()
+library(tidyverse)
+data <- data.frame(category = c("A", "B", "A", "B", "A"),
+value = c(10, 20, 15, 25, 30))
+summary_data <- data %>%
+group_by(category) %>%
+summarise(mean_value = mean(value),
+median_value = median(value))
+summary_data <- data %>%
+group_by(category) %>%
+summarise(mean_value = mean(value),
+median_value = median(value))
+View(summary_data)
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+library(mdsr)
+install.packages(mdsr)
+install.packages("mdsr")
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+library(mdsr)
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+View(my_CIACountries)
+my_CIACountries
+CIACountries %>%
+select(country, pop, gdp)
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+my_CIACountries
+CIACountries %>%
+glimpse()
+select(CIACountries, country, pop, gdp)
+CIACountries %>%
+select(country, pop, gdp)
+filter(CIACountries, pop > 1000000000)
+CIACountries %>%
+filter(pop > 1e9)
+select(country, pop, gdp) %>%
+filter(pop > 1e9)
+CIACountries %>%
+select(country, pop, gdp) %>%
+filter(pop > 1e9)
+my_CIACountries <- mutate(CIACountries, dens = pop/area)
+my_CIACountries[1,]
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+my_CIACountries
+CIACountries %>%
+mutate(new_variable = case_when(
+)) %>%
+group_by(new_variable) %>%
+summarise()
+CIACountries %>%
+mutate(high_gdp = case_when( gdp > 10000)) %>%
+group_by(roadways) %>%
+summarise(high_gdp)
+CIACountries %>%
+mutate(high_gdp = case_when( gdp > 10000)) %>%
+group_by(high_gdp) %>%
+summarise(high_gdp)
+CIACountries %>%
+mutate(group = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+))
+group_by(group) %>%
+summarise(group)
+CIACountries %>%
+mutate(group = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+))
+group_by(group) %>%
+summarise(group)
+group_by(group) %>%
+group
+group_by(group) %>%
+summarise(mn_area = mean(gdp))
+CIACountries %>%
+mutate(group = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+))
+group_by(group) %>%
+summarise(mn_area = mean(gdp))
+CIACountries %>%
+mutate (highgdp = gdp > 10000) %>%
+group_by(highgdp) %>%
+summarise (meanroadways) = mean(roadways))
+CIACountries %>%
+mutate (highgdp = gdp > 10000) %>%
+group_by(highgdp) %>%
+summarise (meanroadways = mean(roadways))
+my_CIACountries <- CIACountries %>%
+mutate (highgdp = gdp > 10000) %>%
+group_by(highgdp) %>%
+summarise (meanroadways = mean(roadways))
+my_CIACountries <- CIACountries %>%
+mutate (highgdp = gdp > 10000) %>%
+group_by(highgdp) %>%
+summarise (meanroadways = mean(roadways))
+my_CIACountries
+my_CIACountries <- CIACountries %>%
+mutate(dens = pop/area)
+my_CIACountries[1,]
+data <- data.frame(category = c("A", "B", "A", "B", "A"),
+age = c(25, 30, 35, 40, 45))
+data %>%
+arrange(desc(age))
+data %>%
+count(A)
+data %>%
+count(category)
+data %>%
+count(category) %>%
+arrange(n)
+ata %>%
+count(category) %>%
+arrange((desc)n)
+data %>%
+count(category) %>%
+arrange(desc(n))
+CIACountries %>%
+arrange(gdp) %>%
+CIACountries %>%
+arrange(gdp) %>%
+head(5)
+CIACountries %>%
+arrange(desc(gdp)) %>%
+head(5)
+CIACountries %>%
+arrange(gdp) %>%
+head(5)
+CIACountries %>%
+select(country, pop, gdp) %>%
+filter(pop > 1e9)
+CIACountries %>%
+select (country, oil_prod, roadways)
+filter(oil_prod > 0)
+CIACountries %>%
+select (country, oil_prod, roadways) %>%
+filter(oil_prod > 0)
+bcountries <- filter(CIACountries, country %in% c(Bahrain, Bangladesh)))
+bcountries <- filter(CIACountries, country %in% c("Bahrain", "Bangladesh"))
+View(bcountries)
+bcountries <- select(filter(CIACountries, country %in% c("Bahrain", "Bangladesh")), ends_with("n"))
+View(data)
+View(bcountries)
+View(bcountries)
+bcountries <- select(filter(CIACountries, country %in% c("Bahrain", "Bangladesh")), ends_with('n'))
+bcountries <- select(filter(CIACountries, country %in% c("Bahrain", "Bangladesh")), stars_with("Bah"))
+bcountries <- select(filter(CIACountries, country %in% c("Bahrain", "Bangladesh")), starts_with("Bah"))
+View(bcountries)
+bcountries <- filter(CIACountries, country %in% c("Bahrain", "Bangladesh"))
+View(bcountries)
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+View(my_CIACountries)
+my_CIACountries
+data <- data.frame(category = c("A", "B", "A", "B", "A"),
+value = c(10, 20, 15, 25, 30))
+summary_data <- data %>%
+group_by(category) %>%
+summarise(mean_value = mean(value),
+median_value = median(value))
+summary_data
+data <- data.frame(category = c("A", "B", "A", "B", "A"),
+value = c(10, 20, 15, 25, 30))
+summary_data <- data %>%
+group_by(category) %>%
+summarise(mean_value = mean(value),
+median_value = median(value))
+summary_data
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ > 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+my_CIACountries
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ < 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+my_CIACountries
+my_CIACountries <- CIACountries %>%
+mutate(high_educ = educ <= 4.5) %>%
+group_by(high_educ) %>%
+summarise(mn_area = mean(area))
+my_CIACountries
+CIACountries %>%
+mutate(highgdp = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(highgdp) %>%
+summarise()
+CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise()
+CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise()
+CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(highgdp) %>%
+summarise()
+CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise()
+CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise(mn_roadways = mean(roadways))
+m_CIACountries <- CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise(mn_roadways = mean(roadways))
+View(Matrix_Combined_column)
+View(Matrix1)
+m_CIACountries <- CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise(mn_roadways = mean(roadways))
+View(m_CIACountries)
+m_CIACountries <- CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue, roadways) %>%
+summarise(mn_roadways = mean(roadways))
+View(m_CIACountries)
+m_CIACountries <- CIACountries %>%
+mutate(gdpvalue = case_when(
+gdp > 10000 ~ "highgdp",
+gdp < 10000 ~ "lowgdp"
+)) %>%
+group_by(gdpvalue) %>%
+summarise(mn_roadways = mean(roadways))
+m_CIACountries

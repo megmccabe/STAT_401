@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Put Your Name Here" />
+<meta name="author" content="Megan McCabe" />
 
 
 <title>Lab 2</title>
@@ -350,7 +350,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Lab 2</h1>
-<h4 class="author">Put Your Name Here</h4>
+<h4 class="author">Megan McCabe</h4>
 <h4 class="date">Due: 09-24-2023</h4>
 
 </div>
@@ -511,7 +511,7 @@ not already have it installed you will get an error message from running
 this code.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.3     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
@@ -900,30 +900,115 @@ CIACountries %&gt;%
 following questions.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Read in the csv file and name the variable <code>college</code>.
+<li>Read in the csv file and name the variable <code>college</code>.
 This should be simple if question 1 has been completed as the github
-will download the data folder.</p></li>
-<li><p>How many colleges in this data set are in Illinois.</p></li>
-<li><p>Find the undergraduate student population of LUC. How man
-colleges (in this dataset) have a larger undergraduate student
-population than LUC?</p></li>
+will download the data folder.</li>
 </ol>
+<pre class="r"><code>#ensure tidyverse and dplyr are loaded in
+library(tidyverse)
+library(dplyr)
+
+#read in college csv file
+college &lt;- read.csv(&quot;top_colleges_2022.csv&quot;)</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How many colleges in this data set are in Illinois.</li>
+</ol>
+<pre class="r"><code>#total number of colleges in Illinois in the dataset
+total_colleges_in_IL &lt;- college %&gt;%
+  filter(state == &quot;IL&quot;) %&gt;%
+  nrow()
+
+print(total_colleges_in_IL)</code></pre>
+<pre><code>## [1] 16</code></pre>
+<pre class="r"><code>#16 colleges are in IL</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find the undergraduate student population of LUC. How man colleges
+(in this dataset) have a larger undergraduate student population than
+LUC?</li>
+</ol>
+<pre class="r"><code>#first find number of students at LUC, then find how many colleges have populations larger than LUC
+
+LUC_population &lt;- college %&gt;%
+  filter(organizationName == &quot;Loyola University Chicago&quot;)  %&gt;%
+  pull(undergradPop)
+LUC_population</code></pre>
+<pre><code>## [1] 13878</code></pre>
+<pre class="r"><code>colleges_larger_than_LUC &lt;- college %&gt;% 
+  filter(undergradPop &gt; LUC_population)
+
+nrow(colleges_larger_than_LUC)</code></pre>
+<pre><code>## [1] 168</code></pre>
+<pre class="r"><code>#there are 168 college populations larger than LUC&#39;s</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Using the <code>cubs_all_time</code> dataset found in the data
 folder. Answer the following questions using R:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>How many total games have the Cubs won and lost between 1876 and
-2022?</p></li>
-<li><p>What year did the Cubs score the most runs? What year did the
-Cubs score the fewest runs? Do you have any thoughts about the year that
-the Cubs scored the fewest runs?</p></li>
-<li><p>In how many seasons was the Cubs total attendance (i.e. the
-variable Attendance) over 3 million?</p></li>
-<li><p>In the years between 1982 and 2000 (inclusive), what was the
-greatest ratio of runs for (R) to runs against (RA) in a single
-season?</p></li>
+<li>How many total games have the Cubs won and lost between 1876 and
+2022?</li>
 </ol>
+<pre class="r"><code>#read in cubs_all_time csv file
+cubs_all_time &lt;-read.csv(&quot;cubs_all_time.csv&quot;)
+
+#total cub wins between 1876 and 2022
+cubs_total_wins &lt;- cubs_all_time %&gt;%
+  summarize(cubs_total_wins = sum(W))
+print(cubs_total_wins)</code></pre>
+<pre><code>##   cubs_total_wins
+## 1           11141</code></pre>
+<pre class="r"><code>#total cub wins between 1876 and 2022
+cubs_total_losses &lt;- cubs_all_time %&gt;%
+  summarize(cubs_total_losses = sum(L))
+print(cubs_total_losses)</code></pre>
+<pre><code>##   cubs_total_losses
+## 1             10592</code></pre>
+<pre class="r"><code>#cubs have won 11141 games and lost 10592 games between 1876 and 2022.</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>What year did the Cubs score the most runs? What year did the Cubs
+score the fewest runs? Do you have any thoughts about the year that the
+Cubs scored the fewest runs?</li>
+</ol>
+<pre class="r"><code>#year Cubs scored most runs
+year_max_runs &lt;- cubs_all_time %&gt;%
+  filter(R == max(R)) %&gt;%
+  select(Year) %&gt;%
+  print()</code></pre>
+<pre><code>##   Year
+## 1 1894</code></pre>
+<pre class="r"><code>#year Cubs scored fewest runs
+year_min_runs &lt;- cubs_all_time %&gt;%
+  filter(R == min(R)) %&gt;%
+  select(Year) %&gt;%
+  print()</code></pre>
+<pre><code>##   Year
+## 1 2020</code></pre>
+<pre class="r"><code>#the year the Cubs scored the most runs was 1894. the year the Cubs scored the fewest runs (2020) makes sense since the Cubs probably didn&#39;t play very much during the onset of the Covid-19 pandemic!</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>In how many seasons was the Cubs total attendance (i.e. the variable
+Attendance) over 3 million?</li>
+</ol>
+<pre class="r"><code>#seasons Cubs had a total attendance over 3 mil
+total_attendance_over_3mil &lt;- cubs_all_time %&gt;%
+  filter(Attendance &gt; 3000000) %&gt;%
+  nrow() %&gt;%
+  print()</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>#the cubs had 12 seasons were the total attendance was over 3 million.</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>In the years between 1982 and 2000 (inclusive), what was the
+greatest ratio of runs for (R) to runs against (RA) in a single
+season?</li>
+</ol>
+<pre class="r"><code>#greatest ratio of runs to runs against the Cubs between 1982 and 2000
+greatest_ratio_runs_runsagainst &lt;- cubs_all_time %&gt;%
+  filter(Year &gt;= 1982 &amp; Year &lt;= 2000) %&gt;%
+  mutate(ratio = R/RA) %&gt;%
+  filter(ratio == max(ratio)) %&gt;%
+  select(ratio)
+print(greatest_ratio_runs_runsagainst)</code></pre>
+<pre><code>##      ratio
+## 1 1.158055</code></pre>
+<pre class="r"><code>#the greatest ratio of runs to runs against in a single season between 1982 and 2000 was 1.58</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Using the Teams data frame in the Lahman package:</li>
 </ol>
@@ -935,13 +1020,339 @@ library(Lahman)
 ## data(&quot;Teams&quot;) will put it in your environment
 #Use help(Teams) to get a description of the data</code></pre>
 <ol style="list-style-type: lower-alpha">
-<li><p>Create a data frame that is a subset of the Teams data frame that
+<li>Create a data frame that is a subset of the Teams data frame that
 contains only the years from 2000 through 2009 and the variables yearID,
-W, and L.</p></li>
-<li><p>How many years did the Chicago Cubs (teamID is “CHN”) hit at
-least 200 HRs in a season and what was the median number of wins in
-those seasons.</p></li>
+W, and L.</li>
 </ol>
+<pre class="r"><code>#install Lahman pacakge, put data in environment, use help to get description, load in dplyr
+library(Lahman)
+data(&quot;Teams&quot;)
+help(Teams)
+library(dplyr)
+
+#create data frame with data from years 2000 to 2009 and variables yearID, W, &amp; L
+team_years_filtered &lt;- Teams %&gt;%
+  filter (yearID &gt;= 2000 &amp; yearID &lt;= 2009) %&gt;%
+  select (yearID, W, L)
+print(team_years_filtered)</code></pre>
+<pre><code>##     yearID   W   L
+## 1     2000  82  80
+## 2     2000  85  77
+## 3     2000  95  67
+## 4     2000  74  88
+## 5     2000  85  77
+## 6     2000  95  67
+## 7     2000  65  97
+## 8     2000  85  77
+## 9     2000  90  72
+## 10    2000  82  80
+## 11    2000  79  83
+## 12    2000  79  82
+## 13    2000  72  90
+## 14    2000  77  85
+## 15    2000  86  76
+## 16    2000  73  89
+## 17    2000  69  93
+## 18    2000  67  95
+## 19    2000  87  74
+## 20    2000  94  68
+## 21    2000  91  70
+## 22    2000  65  97
+## 23    2000  69  93
+## 24    2000  76  86
+## 25    2000  91  71
+## 26    2000  97  65
+## 27    2000  95  67
+## 28    2000  69  92
+## 29    2000  71  91
+## 30    2000  83  79
+## 31    2001  75  87
+## 32    2001  92  70
+## 33    2001  88  74
+## 34    2001  63  98
+## 35    2001  82  79
+## 36    2001  83  79
+## 37    2001  88  74
+## 38    2001  66  96
+## 39    2001  91  71
+## 40    2001  73  89
+## 41    2001  66  96
+## 42    2001  76  86
+## 43    2001  93  69
+## 44    2001  65  97
+## 45    2001  86  76
+## 46    2001  68  94
+## 47    2001  85  77
+## 48    2001  68  94
+## 49    2001  95  65
+## 50    2001  82  80
+## 51    2001 102  60
+## 52    2001  86  76
+## 53    2001  62 100
+## 54    2001  79  83
+## 55    2001 116  46
+## 56    2001  90  72
+## 57    2001  93  69
+## 58    2001  62 100
+## 59    2001  73  89
+## 60    2001  80  82
+## 61    2002  99  63
+## 62    2002  98  64
+## 63    2002 101  59
+## 64    2002  67  95
+## 65    2002  93  69
+## 66    2002  81  81
+## 67    2002  67  95
+## 68    2002  78  84
+## 69    2002  74  88
+## 70    2002  73  89
+## 71    2002  55 106
+## 72    2002  79  83
+## 73    2002  84  78
+## 74    2002  62 100
+## 75    2002  92  70
+## 76    2002  56 106
+## 77    2002  94  67
+## 78    2002  83  79
+## 79    2002 103  58
+## 80    2002  75  86
+## 81    2002 103  59
+## 82    2002  80  81
+## 83    2002  72  89
+## 84    2002  66  96
+## 85    2002  93  69
+## 86    2002  95  66
+## 87    2002  97  65
+## 88    2002  55 106
+## 89    2002  72  90
+## 90    2002  78  84
+## 91    2003  77  85
+## 92    2003  84  78
+## 93    2003 101  61
+## 94    2003  71  91
+## 95    2003  95  67
+## 96    2003  86  76
+## 97    2003  88  74
+## 98    2003  69  93
+## 99    2003  68  94
+## 100   2003  74  88
+## 101   2003  43 119
+## 102   2003  91  71
+## 103   2003  87  75
+## 104   2003  83  79
+## 105   2003  85  77
+## 106   2003  68  94
+## 107   2003  90  72
+## 108   2003  83  79
+## 109   2003 101  61
+## 110   2003  66  95
+## 111   2003  96  66
+## 112   2003  86  76
+## 113   2003  75  87
+## 114   2003  64  98
+## 115   2003  93  69
+## 116   2003 100  61
+## 117   2003  85  77
+## 118   2003  63  99
+## 119   2003  71  91
+## 120   2003  86  76
+## 121   2004  92  70
+## 122   2004  51 111
+## 123   2004  96  66
+## 124   2004  78  84
+## 125   2004  98  64
+## 126   2004  83  79
+## 127   2004  89  73
+## 128   2004  76  86
+## 129   2004  80  82
+## 130   2004  68  94
+## 131   2004  72  90
+## 132   2004  83  79
+## 133   2004  92  70
+## 134   2004  58 104
+## 135   2004  93  69
+## 136   2004  67  94
+## 137   2004  92  70
+## 138   2004  67  95
+## 139   2004 101  61
+## 140   2004  71  91
+## 141   2004  91  71
+## 142   2004  86  76
+## 143   2004  72  89
+## 144   2004  87  75
+## 145   2004  63  99
+## 146   2004  91  71
+## 147   2004 105  57
+## 148   2004  70  91
+## 149   2004  89  73
+## 150   2004  67  94
+## 151   2005  77  85
+## 152   2005  90  72
+## 153   2005  74  88
+## 154   2005  95  67
+## 155   2005  99  63
+## 156   2005  79  83
+## 157   2005  73  89
+## 158   2005  93  69
+## 159   2005  67  95
+## 160   2005  71  91
+## 161   2005  83  79
+## 162   2005  89  73
+## 163   2005  56 106
+## 164   2005  95  67
+## 165   2005  71  91
+## 166   2005  81  81
+## 167   2005  83  79
+## 168   2005  95  67
+## 169   2005  83  79
+## 170   2005  88  74
+## 171   2005  88  74
+## 172   2005  67  95
+## 173   2005  82  80
+## 174   2005  69  93
+## 175   2005  75  87
+## 176   2005 100  62
+## 177   2005  67  95
+## 178   2005  79  83
+## 179   2005  80  82
+## 180   2005  81  81
+## 181   2006  76  86
+## 182   2006  79  83
+## 183   2006  70  92
+## 184   2006  86  76
+## 185   2006  90  72
+## 186   2006  66  96
+## 187   2006  80  82
+## 188   2006  78  84
+## 189   2006  76  86
+## 190   2006  95  67
+## 191   2006  78  84
+## 192   2006  82  80
+## 193   2006  62 100
+## 194   2006  89  73
+## 195   2006  88  74
+## 196   2006  75  87
+## 197   2006  96  66
+## 198   2006  97  65
+## 199   2006  97  65
+## 200   2006  93  69
+## 201   2006  85  77
+## 202   2006  67  95
+## 203   2006  88  74
+## 204   2006  78  84
+## 205   2006  76  85
+## 206   2006  83  78
+## 207   2006  61 101
+## 208   2006  80  82
+## 209   2006  87  75
+## 210   2006  71  91
+## 211   2007  90  72
+## 212   2007  84  78
+## 213   2007  69  93
+## 214   2007  96  66
+## 215   2007  72  90
+## 216   2007  85  77
+## 217   2007  72  90
+## 218   2007  96  66
+## 219   2007  90  73
+## 220   2007  88  74
+## 221   2007  71  91
+## 222   2007  73  89
+## 223   2007  69  93
+## 224   2007  94  68
+## 225   2007  82  80
+## 226   2007  83  79
+## 227   2007  79  83
+## 228   2007  94  68
+## 229   2007  88  74
+## 230   2007  76  86
+## 231   2007  89  73
+## 232   2007  68  94
+## 233   2007  89  74
+## 234   2007  88  74
+## 235   2007  71  91
+## 236   2007  78  84
+## 237   2007  66  96
+## 238   2007  75  87
+## 239   2007  83  79
+## 240   2007  73  89
+## 241   2008  82  80
+## 242   2008  72  90
+## 243   2008  68  93
+## 244   2008  95  67
+## 245   2008  89  74
+## 246   2008  97  64
+## 247   2008  74  88
+## 248   2008  81  81
+## 249   2008  74  88
+## 250   2008  74  88
+## 251   2008  84  77
+## 252   2008  86  75
+## 253   2008  75  87
+## 254   2008 100  62
+## 255   2008  84  78
+## 256   2008  90  72
+## 257   2008  88  75
+## 258   2008  89  73
+## 259   2008  89  73
+## 260   2008  75  86
+## 261   2008  92  70
+## 262   2008  67  95
+## 263   2008  63  99
+## 264   2008  61 101
+## 265   2008  72  90
+## 266   2008  86  76
+## 267   2008  97  65
+## 268   2008  79  83
+## 269   2008  86  76
+## 270   2008  59 102
+## 271   2009  70  92
+## 272   2009  86  76
+## 273   2009  64  98
+## 274   2009  95  67
+## 275   2009  79  83
+## 276   2009  83  78
+## 277   2009  78  84
+## 278   2009  65  97
+## 279   2009  92  70
+## 280   2009  86  77
+## 281   2009  87  75
+## 282   2009  74  88
+## 283   2009  65  97
+## 284   2009  97  65
+## 285   2009  95  67
+## 286   2009  80  82
+## 287   2009  87  76
+## 288   2009 103  59
+## 289   2009  70  92
+## 290   2009  75  87
+## 291   2009  93  69
+## 292   2009  62  99
+## 293   2009  75  87
+## 294   2009  85  77
+## 295   2009  88  74
+## 296   2009  91  71
+## 297   2009  84  78
+## 298   2009  87  75
+## 299   2009  75  87
+## 300   2009  59 103</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How many years did the Chicago Cubs (teamID is “CHN”) hit at least
+200 HRs in a season and what was the median number of wins in those
+seasons.</li>
+</ol>
+<pre class="r"><code>#how many years did Cubs hit at least 200 HRs
+cubs_200hrs_seasons &lt;- Teams %&gt;%
+  filter(teamID == &quot;CHN&quot; &amp; HR &gt;=200) %&gt;%
+  select (teamID, HR, W) 
+nrow(cubs_200hrs_seasons)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code>#find median number of wins in seasons where Cubs hit at least 200 HRs
+cubs_200hrs_seasons %&gt;%
+  summarize(median_wins &lt;- median(W)) </code></pre>
+<pre><code>##   median_wins &lt;- median(W)
+## 1                       84</code></pre>
+<pre class="r"><code>#the cubs hit at least 200 Hrs in 7 seasons and the median number of wins in those seasons was 84</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>flights</code> dataset from
 <code>nycflights13</code></li>
@@ -954,13 +1365,105 @@ those seasons.</p></li>
 <p>Use the nycflights13 package and the flights data frame to answer the
 following questions (you can ignore missing values):</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>What month had the highest average time of delayed flights? Is
-there a difference between using departure delay versus arrival
-delay?</p></li>
-<li><p>Which airport has the highest proportion of delayed flights
-leaving? Which airport has the highest proportion of flight arriving
-late?</p></li>
+<li>What month had the highest average time of delayed flights? Is there
+a difference between using departure delay versus arrival delay?</li>
 </ol>
+<pre class="r"><code>#install package, load in environment, load dplyr in
+library(nycflights13)
+#data(&quot;flights&quot;)
+library(dplyr)
+
+#omit any na values
+flights &lt;- na.omit (flights)
+
+#what month had highest average arrival delay and what month had highest average departure delay? is there a difference between the two?
+
+#find average departure delay by month
+average_dep_delay &lt;- flights %&gt;%
+  group_by(month) %&gt;%
+  filter(dep_delay &gt; 0) %&gt;%
+  summarise(average_dep_delay = mean(dep_delay)) 
+  
+#find the month with the max departure delay
+max_dep_delay_month &lt;- average_dep_delay %&gt;%
+  filter(average_dep_delay == max(average_dep_delay)) %&gt;%
+  select(month)
+print(max_dep_delay_month)</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   month
+##   &lt;int&gt;
+## 1     6</code></pre>
+<pre class="r"><code>#find the average arrival delay by month
+average_arr_delay &lt;- flights %&gt;%
+  group_by(month) %&gt;%
+  filter(arr_delay &gt; 0) %&gt;%
+  summarise(average_arr_delay = mean(arr_delay))
+
+#find the month with the maximum arrival delay
+max_arr_delay_month &lt;- average_arr_delay %&gt;%
+  filter(average_arr_delay == max(average_arr_delay)) %&gt;%
+  select(month)
+print(max_arr_delay_month)</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   month
+##   &lt;int&gt;
+## 1     7</code></pre>
+<pre class="r"><code>#yes, there is difference between using arrival delays and departure delay compared to using all delays combined. max departure delay month was month 6, while the max arrival delay was month 7. </code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Which airport has the highest proportion of delayed flights leaving?
+Which airport has the highest proportion of flight arriving late?</li>
+</ol>
+<pre class="r"><code>#omit data values that are na
+flights &lt;- na.omit (flights)
+
+#find each origin&#39;s number of departure delays
+num_dep_delay_by_origin &lt;- flights %&gt;%
+  group_by(origin) %&gt;%
+  filter(dep_delay &gt; 0) %&gt;%
+  count(origin)
+
+#find total number of flights from each origin
+num_flights_by_origin &lt;- flights %&gt;%
+  group_by(origin) %&gt;%
+  count(origin)
+
+#combined table of flight departure delays and total flights from each origin
+combined_table_del &lt;- cbind(num_dep_delay_by_origin, num_flights_by_origin) %&gt;%
+  mutate(proportion_del_dep = n...2 / n...4) %&gt;%
+  filter(proportion_del_dep == max(proportion_del_dep)) %&gt;%
+  select(origin...1) %&gt;%
+  print()</code></pre>
+<pre><code>## New names:
+## • `origin` -&gt; `origin...1`
+## • `n` -&gt; `n...2`
+## • `origin` -&gt; `origin...3`
+## • `n` -&gt; `n...4`</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   origin...1
+##   &lt;chr&gt;     
+## 1 EWR</code></pre>
+<pre class="r"><code>#find each origins&#39;s number of arrival delays
+num_arr_delay_by_origin &lt;- flights %&gt;%
+  group_by(origin) %&gt;%
+  filter(arr_delay &gt; 0) %&gt;%
+  count(origin)
+
+#combined table of flight arrival delays and total flights from each origin
+combined_table_arr &lt;- cbind(num_arr_delay_by_origin, num_flights_by_origin) %&gt;%
+  mutate(proportion_arr_dep = n...2 / n...4) %&gt;%
+  filter(proportion_arr_dep == max(proportion_arr_dep)) %&gt;%
+  select(origin...1) %&gt;%
+  print()</code></pre>
+<pre><code>## New names:
+## • `origin` -&gt; `origin...1`
+## • `n` -&gt; `n...2`
+## • `origin` -&gt; `origin...3`
+## • `n` -&gt; `n...4`</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   origin...1
+##   &lt;chr&gt;     
+## 1 EWR</code></pre>
+<pre class="r"><code>#EWR has both the highest proportion of arrival &amp; departure delays.</code></pre>
 </div>
 
 

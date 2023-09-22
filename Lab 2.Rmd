@@ -1,6 +1,6 @@
 ---
 title: "Lab 2"
-author: "Put Your Name Here"
+author: "Megan McCabe"
 date: "Due: 09-24-2023"
 output: html_document
 ---
@@ -467,18 +467,45 @@ ____________________________________________________________________
 a) Read in the csv file and name the variable `college`. This should be simple if question 1 has been completed as the github will download the data folder.
 
 ```{r ex1a}
+#ensure tidyverse and dplyr are loaded in
+library(tidyverse)
+library(dplyr)
+
+#read in college csv file
+college <- read.csv("top_colleges_2022.csv")
 
 ```
 
 b) How many colleges in this data set are in Illinois.
 
 ```{r ex1b}
+#total number of colleges in Illinois in the dataset
+total_colleges_in_IL <- college %>%
+  filter(state == "IL") %>%
+  nrow()
+
+print(total_colleges_in_IL)
+
+#16 colleges are in IL
 
 ```
 
 c) Find the undergraduate student population of LUC. How man colleges (in this dataset) have a larger undergraduate student population than LUC?
 
 ```{r ex1c}
+#first find number of students at LUC, then find how many colleges have populations larger than LUC
+
+LUC_population <- college %>%
+  filter(organizationName == "Loyola University Chicago")  %>%
+  pull(undergradPop)
+LUC_population
+  
+colleges_larger_than_LUC <- college %>% 
+  filter(undergradPop > LUC_population)
+
+nrow(colleges_larger_than_LUC)
+
+#there are 168 college populations larger than LUC's
 
 ```
 
@@ -488,12 +515,39 @@ a) How many total games have the Cubs won and lost between 1876 and 2022?
 
 ```{r ex2a}
 
+#read in cubs_all_time csv file
+cubs_all_time <-read.csv("cubs_all_time.csv")
+
+#total cub wins between 1876 and 2022
+cubs_total_wins <- cubs_all_time %>%
+  summarize(cubs_total_wins = sum(W))
+print(cubs_total_wins)
+
+#total cub wins between 1876 and 2022
+cubs_total_losses <- cubs_all_time %>%
+  summarize(cubs_total_losses = sum(L))
+print(cubs_total_losses)
+
+#cubs have won 11141 games and lost 10592 games between 1876 and 2022.
 
 ```
 
 b) What year did the Cubs score the most runs? What year did the Cubs score the fewest runs? Do you have any thoughts about the year that the Cubs scored the fewest runs?
 
 ```{r ex2b}
+#year Cubs scored most runs
+year_max_runs <- cubs_all_time %>%
+  filter(R == max(R)) %>%
+  select(Year) %>%
+  print()
+
+#year Cubs scored fewest runs
+year_min_runs <- cubs_all_time %>%
+  filter(R == min(R)) %>%
+  select(Year) %>%
+  print()
+
+#the year the Cubs scored the most runs was 1894. the year the Cubs scored the fewest runs (2020) makes sense since the Cubs probably didn't play very much during the onset of the Covid-19 pandemic!
 
 ```
 
@@ -501,11 +555,29 @@ c) In how many seasons was the Cubs total attendance (i.e. the variable Attendan
 
 ```{r ex2c}
 
+#seasons Cubs had a total attendance over 3 mil
+total_attendance_over_3mil <- cubs_all_time %>%
+  filter(Attendance > 3000000) %>%
+  nrow() %>%
+  print()
+
+#the cubs had 12 seasons were the total attendance was over 3 million.
+
 ```
 
 d) In the years between 1982 and 2000 (inclusive), what was the greatest ratio of runs for (R) to runs against (RA) in a single season?
 
 ```{r ex2d}
+#greatest ratio of runs to runs against the Cubs between 1982 and 2000
+greatest_ratio_runs_runsagainst <- cubs_all_time %>%
+  filter(Year >= 1982 & Year <= 2000) %>%
+  mutate(ratio = R/RA) %>%
+  filter(ratio == max(ratio)) %>%
+  select(ratio)
+print(greatest_ratio_runs_runsagainst)
+
+#the greatest ratio of runs to runs against in a single season between 1982 and 2000 was 1.58
+  
 
 ```
 
@@ -524,6 +596,17 @@ library(Lahman)
 a)  Create a data frame that is a subset of the Teams data frame that contains only the years from 2000 through 2009 and the variables yearID, W, and L.
 
 ```{r ex3a}
+#install Lahman pacakge, put data in environment, use help to get description, load in dplyr
+library(Lahman)
+data("Teams")
+help(Teams)
+library(dplyr)
+
+#create data frame with data from years 2000 to 2009 and variables yearID, W, & L
+team_years_filtered <- Teams %>%
+  filter (yearID >= 2000 & yearID <= 2009) %>%
+  select (yearID, W, L)
+print(team_years_filtered)
 
 ```
 
@@ -531,6 +614,19 @@ a)  Create a data frame that is a subset of the Teams data frame that contains o
 b) How many years did the Chicago Cubs (teamID is "CHN") hit at least 200 HRs in a season and what was the median number of wins in those seasons.
 
 ```{r ex3b}
+
+#how many years did Cubs hit at least 200 HRs
+cubs_200hrs_seasons <- Teams %>%
+  filter(teamID == "CHN" & HR >=200) %>%
+  select (teamID, HR, W) 
+nrow(cubs_200hrs_seasons)
+
+#find median number of wins in seasons where Cubs hit at least 200 HRs
+cubs_200hrs_seasons %>%
+  summarize(median_wins <- median(W)) 
+  
+
+#the cubs hit at least 200 Hrs in 7 seasons and the median number of wins in those seasons was 84
 
 ```
 
@@ -549,12 +645,85 @@ Use the nycflights13 package and the flights data frame to answer the following 
 a) What month had the highest average time of delayed flights? Is there a difference between using departure delay versus arrival delay?
 
 ```{r ex4a}
+#install package, load in environment, load dplyr in
+library(nycflights13)
+#data("flights")
+library(dplyr)
+
+#omit any na values
+flights <- na.omit (flights)
+
+#what month had highest average arrival delay and what month had highest average departure delay? is there a difference between the two?
+
+#find average departure delay by month
+average_dep_delay <- flights %>%
+  group_by(month) %>%
+  filter(dep_delay > 0) %>%
+  summarise(average_dep_delay = mean(dep_delay)) 
+  
+#find the month with the max departure delay
+max_dep_delay_month <- average_dep_delay %>%
+  filter(average_dep_delay == max(average_dep_delay)) %>%
+  select(month)
+print(max_dep_delay_month)
+
+
+#find the average arrival delay by month
+average_arr_delay <- flights %>%
+  group_by(month) %>%
+  filter(arr_delay > 0) %>%
+  summarise(average_arr_delay = mean(arr_delay))
+
+#find the month with the maximum arrival delay
+max_arr_delay_month <- average_arr_delay %>%
+  filter(average_arr_delay == max(average_arr_delay)) %>%
+  select(month)
+print(max_arr_delay_month)
+
+
+#yes, there is difference between using arrival delays and departure delay compared to using all delays combined. max departure delay month was month 6, while the max arrival delay was month 7. 
 
 ```
 
 b) Which airport has the highest proportion of delayed flights leaving? Which airport has the highest proportion of flight arriving late?
 
 ```{r ex4b}
+
+#omit data values that are na
+flights <- na.omit (flights)
+
+#find each origin's number of departure delays
+num_dep_delay_by_origin <- flights %>%
+  group_by(origin) %>%
+  filter(dep_delay > 0) %>%
+  count(origin)
+
+#find total number of flights from each origin
+num_flights_by_origin <- flights %>%
+  group_by(origin) %>%
+  count(origin)
+
+#combined table of flight departure delays and total flights from each origin
+combined_table_del <- cbind(num_dep_delay_by_origin, num_flights_by_origin) %>%
+  mutate(proportion_del_dep = n...2 / n...4) %>%
+  filter(proportion_del_dep == max(proportion_del_dep)) %>%
+  select(origin...1) %>%
+  print()
+
+#find each origins's number of arrival delays
+num_arr_delay_by_origin <- flights %>%
+  group_by(origin) %>%
+  filter(arr_delay > 0) %>%
+  count(origin)
+
+#combined table of flight arrival delays and total flights from each origin
+combined_table_arr <- cbind(num_arr_delay_by_origin, num_flights_by_origin) %>%
+  mutate(proportion_arr_dep = n...2 / n...4) %>%
+  filter(proportion_arr_dep == max(proportion_arr_dep)) %>%
+  select(origin...1) %>%
+  print()
+
+#EWR has both the highest proportion of arrival & departure delays.
 
 ```
 
